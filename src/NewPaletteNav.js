@@ -25,12 +25,38 @@ import DraggableColorList from './DraggableColorList';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { arrayMove } from 'react-sortable-hoc';
 
+const styles = {
+	navBtn: {
+		display: 'flex',
+		flexDirection: 'row',
+		marginLeft: 'auto'
+	},
+	button1: {
+		width: '100px',
+		margin: '0 0.5rem'
+	},
+	link: {
+		textDecoration: 'none'
+	}
+};
+
 class NewPaletteNav extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			newPaletteName: ''
+			newPaletteName: '',
+			formShowing: false
 		};
+		this.showForm = this.showForm.bind(this);
+		this.hideForm = this.hideForm.bind(this);
+	}
+
+	showForm() {
+		this.setState({ formShowing: true });
+	}
+
+	hideForm() {
+		this.setState({ formShowing: false });
 	}
 
 	render() {
@@ -57,13 +83,33 @@ class NewPaletteNav extends Component {
 						<Typography variant="h6" color="inherit" noWrap>
 							Persistent drawer
 						</Typography>
-
-						<PaletteMetaForm handleSubmit={this.props.handleSubmit} allPalettes={this.props.allPalettes} />
+						<div className={classes.navBtn}>
+							<Link to="/" className={classes.link}>
+								<Button className={classes.button1} variant="contained" color="secondary">
+									GO Back
+								</Button>
+							</Link>
+							<Button
+								variant="contained"
+								className={classes.button2}
+								color="primary"
+								onClick={this.showForm}
+							>
+								Save
+							</Button>
+						</div>
 					</Toolbar>
 				</AppBar>
+				{this.state.formShowing && (
+					<PaletteMetaForm
+						hideForm={this.hideForm}
+						handleSubmit={this.props.handleSubmit}
+						allPalettes={this.props.allPalettes}
+					/>
+				)}
 			</div>
 		);
 	}
 }
 
-export default NewPaletteNav;
+export default withStyles(styles)(NewPaletteNav);
