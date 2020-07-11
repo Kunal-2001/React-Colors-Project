@@ -25,6 +25,23 @@ import DraggableColorList from './DraggableColorList';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { arrayMove } from 'react-sortable-hoc';
 
+const styles = {
+	picker: {
+		width: '100% !important',
+		marginTop: '2rem'
+	},
+	addColor: {
+		width: '100%',
+		padding: '1rem',
+		marginTop: '1rem',
+		fontSize: '1rem'
+	},
+	colorInput: {
+		width: '100%',
+		height: '70px'
+	}
+};
+
 class ColorPickerForm extends Component {
 	constructor(props) {
 		super(props);
@@ -65,12 +82,20 @@ class ColorPickerForm extends Component {
 		this.setState({ newColorText: '' });
 	}
 	render() {
-		const { paletteFull } = this.props;
+		const { classes, paletteFull } = this.props;
 		return (
 			<div>
-				<ChromePicker color={this.state.currentColor} onChangeComplete={this.updateNewColor} />
+				<ChromePicker
+					className={classes.picker}
+					color={this.state.currentColor}
+					onChangeComplete={this.updateNewColor}
+				/>
 				<ValidatorForm onSubmit={this.handleSubmit}>
 					<TextValidator
+						variant="filled"
+						margin="normal"
+						placeholder="Color Name"
+						className={classes.colorInput}
 						name="newColorText"
 						value={this.state.newColorText}
 						onChange={this.handleFormInputChange}
@@ -82,6 +107,7 @@ class ColorPickerForm extends Component {
 						]}
 					/>
 					<Button
+						className={classes.addColor}
 						type="submit"
 						variant="contained"
 						color="primary"
@@ -96,4 +122,4 @@ class ColorPickerForm extends Component {
 	}
 }
 
-export default ColorPickerForm;
+export default withStyles(styles)(ColorPickerForm);
