@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
+import PaletteMetaForm from './PaletteMetaForm';
 import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
@@ -30,19 +31,8 @@ class NewPaletteNav extends Component {
 		this.state = {
 			newPaletteName: ''
 		};
-		this.handleFormInputChange = this.handleFormInputChange.bind(this);
-	}
-	componentDidMount() {
-		ValidatorForm.addValidationRule('PaletteNameValidator', (value) =>
-			this.props.allPalettes.every(({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase())
-		);
 	}
 
-	handleFormInputChange(evt) {
-		this.setState({
-			[evt.target.name]: evt.target.value
-		});
-	}
 	render() {
 		const { classes, open } = this.props;
 		return (
@@ -67,24 +57,8 @@ class NewPaletteNav extends Component {
 						<Typography variant="h6" color="inherit" noWrap>
 							Persistent drawer
 						</Typography>
-						<ValidatorForm onSubmit={() => this.props.handleSubmit(this.state.newPaletteName)}>
-							<TextValidator
-								name="newPaletteName"
-								label="Palette Name"
-								value={this.state.newPaletteName}
-								onChange={this.handleFormInputChange}
-								validators={[ 'required', 'PaletteNameValidator' ]}
-								errorMessages={[ 'This field is required', 'Name already taken' ]}
-							/>
-							<Link to="/">
-								<Button variant="contained" color="secondary">
-									GO Back
-								</Button>
-							</Link>
-							<Button variant="contained" color="primary" type="submit">
-								Save Palette
-							</Button>
-						</ValidatorForm>
+
+						<PaletteMetaForm handleSubmit={this.props.handleSubmit} allPalettes={this.props.allPalettes} />
 					</Toolbar>
 				</AppBar>
 			</div>
