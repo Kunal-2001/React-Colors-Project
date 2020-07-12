@@ -141,11 +141,17 @@
 		width: 25%;
 		height: 20%;
 	}
+	.SingleColorBox .Color-Box {
+		height: 33.3333%;
+	}
 }
 
 @media (max-width: 991.8px) {
 	.Color-Box {
 		width: 50%;
+		height: 20%;
+	}
+	.SingleColorBox .Color-Box {
 		height: 20%;
 	}
 }
@@ -160,5 +166,11 @@
 	}
 	.SingleColorBox .Color-Box {
 		height: 10%;
+	}
+	.copy-msg h1 {
+		font-size: 5rem;
+	}
+	.copy-overlay {
+		height: 200%;
 	}
 }

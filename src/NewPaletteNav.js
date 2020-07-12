@@ -81,7 +81,7 @@ class NewPaletteNav extends Component {
 							<MenuIcon />
 						</IconButton>
 						<Typography variant="h6" color="inherit" noWrap>
-							Persistent drawer
+							Create New Palette
 						</Typography>
 						<div className={classes.navBtn}>
 							<Link to="/" className={classes.link}>
