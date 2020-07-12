@@ -8,6 +8,7 @@ const styles = {
 	root: {
 		backgroundColor: 'blue',
 		height: '100vh',
+		overflow: 'scroll',
 		display: 'flex',
 		alignItems: 'flex-start',
 		justifyContent: 'center'
