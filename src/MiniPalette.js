@@ -43,7 +43,6 @@ const styles = {
 		margin: '0 auto',
 		marginBottom: '-3.5px'
 	},
-	delete: {},
 	deleteIcon: {
 		color: 'white',
 		backgroundColor: '#eb3d30',
@@ -58,27 +57,40 @@ const styles = {
 	}
 };
 
-function MiniPalette(props) {
-	const { classes, paletteName, emoji, colors } = props;
-	const miniColorBoxes = colors.map((color) => (
-		<div className={classes.miniColor} style={{ background: color.color }} key={color.name} />
-	));
-	return (
-		<div className={classes.root} onClick={props.handleClick}>
-			<div className={classes.delete}>
+class MiniPalette extends Component {
+	constructor(props) {
+		super(props);
+		this.removePalette = this.removePalette.bind(this);
+	}
+
+	removePalette(e) {
+		// stopPropagation prevents user to go to its parent link
+		e.stopPropagation();
+		this.props.deletePalette(this.props.id);
+	}
+
+	render() {
+		const { classes, paletteName, emoji, colors, handleClick } = this.props;
+		const miniColorBoxes = colors.map((color) => (
+			<div className={classes.miniColor} style={{ background: color.color }} key={color.name} />
+		));
+		return (
+			<div className={classes.root} onClick={handleClick}>
 				<DeleteIcon
 					style={{
 						transition: 'all 0.3s ease-in-out'
 					}}
 					className={classes.deleteIcon}
+					onClick={this.removePalette}
 				/>
+
+				<div className={classes.colors}>{miniColorBoxes}</div>
+				<h5 className={classes.title}>
+					{paletteName} <span className={classes.emoji}>{emoji}</span>
+				</h5>
 			</div>
-			<div className={classes.colors}>{miniColorBoxes}</div>
-			<h5 className={classes.title}>
-				{paletteName} <span className={classes.emoji}>{emoji}</span>
-			</h5>
-		</div>
-	);
+		);
+	}
 }
 
 export default withStyles(styles)(MiniPalette);
