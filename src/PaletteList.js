@@ -3,15 +3,18 @@ import Palette from './Palette';
 import { Link } from 'react-router-dom';
 import MiniPalette from './MiniPalette';
 import { withStyles } from '@material-ui/styles';
+import bg from './Confetti-Doodles.svg';
 
 const styles = {
 	root: {
-		backgroundColor: 'blue',
 		height: '100vh',
 		overflow: 'scroll',
 		display: 'flex',
 		alignItems: 'flex-start',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		/* background by SVGBackgrounds.com */
+		backgroundColor: '#aa3333',
+		backgroundImage: `url(${bg})`
 	},
 	container: {
 		display: 'flex',
@@ -37,6 +40,11 @@ const styles = {
 			color: 'white'
 		}
 	},
+	header: {
+		'@media (max-width : 575.98px)': {
+			marginRight: '80px'
+		}
+	},
 	palettes: {
 		boxSizing: 'border-box',
 		width: '100%',
@@ -48,7 +56,7 @@ const styles = {
 		},
 		'@media (max-width : 575.98px)': {
 			gridTemplateColumns: 'repeat(1 , 100%)',
-			gridGap: '1rem'
+			gridGap: '1.4rem'
 		}
 	}
 };
@@ -65,7 +73,7 @@ class PaletteList extends Component {
 			<div className={classes.root}>
 				<div className={classes.container}>
 					<nav className={classes.nav}>
-						<h1>React Colors</h1>
+						<h1 className={classes.header}>React Colors</h1>
 						<Link to="/palette/new">Create a new palette</Link>
 					</nav>
 					<div className={classes.palettes}>
