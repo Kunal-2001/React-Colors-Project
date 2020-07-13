@@ -245,6 +245,7 @@ class NewSinglePalette extends Component {
 						colors={this.state.colors}
 						handleDeleteColor={this.handleDeleteColor}
 						onSortEnd={this.onSortEnd}
+						distance={20}
 					/>
 				</main>
 			</div>
