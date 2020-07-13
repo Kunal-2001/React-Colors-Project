@@ -66,7 +66,7 @@ class MiniPalette extends Component {
 	removePalette(e) {
 		// stopPropagation prevents user to go to its parent link
 		e.stopPropagation();
-		this.props.deletePalette(this.props.id);
+		this.props.openDialog(this.props.id);
 	}
 
 	render() {
