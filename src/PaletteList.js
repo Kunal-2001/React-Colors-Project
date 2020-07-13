@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import Palette from './Palette';
 import { Link } from 'react-router-dom';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -117,7 +113,7 @@ class PaletteList extends Component {
 	}
 
 	render() {
-		const { palettes, deletePalette } = this.props;
+		const { palettes } = this.props;
 		const { classes } = this.props;
 		return (
 			<div className={classes.root}>

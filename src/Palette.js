@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ColorBox from './ColorBox';
 import 'rc-slider/assets/index.css';
 import './Palette.css';
-import Slider from 'rc-slider';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
 
